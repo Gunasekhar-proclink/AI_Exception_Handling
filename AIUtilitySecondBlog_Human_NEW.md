@@ -312,14 +312,14 @@ Instead of cramming everything into one massive Groovy script, we break the AI p
 
 **The Flow:**
 ```
-Content Modifier → Groovy Script 1 → HTTP Adapter → Groovy Script 2 → End
+CM_Property_Declare(Conten Modifier) → GS_GenAI_Prompt(Groovy Script) → HTTP Adapter → GS_Gen_Response(Groovy Script) → End
 ```
 
 **Why split it up?** Because each step has a clear responsibility:
-1. **Content Modifier**: Set up properties and headers
-2. **Groovy Script 1**: Build the Gemini prompt
+1. **CM_Property_Declare**: Set up properties and headers
+2. **GS_GenAI_Prompt**: Build the Gemini prompt
 3. **HTTP Adapter**: Call Gemini API (with timeout/retry handling)
-4. **Groovy Script 2**: Parse response and build universal JSON
+4. **GS_Gen_Response**: Parse response and build universal JSON
 
 If something breaks, you know exactly which step failed. Plus, you can see the actual request/response in message monitoring.
 
